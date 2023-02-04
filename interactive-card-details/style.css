@@ -1,0 +1,352 @@
+@charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500&display=swap');
+/* font-family: 'Space Grotesk', sans-serif; */
+
+*{
+    padding: 0;
+    margin: 0;
+    outline: none;
+    border: none;
+    box-sizing: border-box;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 500;
+}
+
+:root{
+    --White: hsl(0, 0%, 100%);
+    --Light-grayish-violet: hsl(270, 3%, 87%);
+    --Dark-grayish-violet: hsl(279, 6%, 55%);
+    --Very-dark-violet: hsl(278, 68%, 11%);
+    --Error-input: hsl(0, 100%, 66%);
+}
+
+.hidden{
+    display: none !important;
+}
+
+main{
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.front{
+    background-image: url(images/bg-card-front.png);
+}
+
+.back{
+    background-image: url(images/bg-card-back.png);
+}
+
+
+
+/* DESKTOP */
+/* DESKTOP */
+/* DESKTOP */
+
+.bg-container{
+    position: relative;
+    display: flex;
+    width: 483px;
+    min-width: 383px
+}
+
+.bg{
+    background-image: url(images/bg-main-desktop.png);
+    background-size: cover;
+    display: block;
+    width: 100%;
+    height: 100vh;
+}
+
+.front, .back{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 447px;
+    height: 245px;
+    right: 0px;
+    top: 0px;
+}
+
+.front{
+    padding: 25px;
+    top: 185px;
+    right: -120px;
+}
+
+.back{
+    top: 470px;
+    right: -220px;
+}
+
+.card-logo{
+    width: fit-content;
+}
+
+.card-number{
+    color: var(--White);
+    letter-spacing: 0.15em;
+    font-size: 1.6em;
+    margin-top: auto;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+}
+
+.name-date{
+    color: var(--White);
+    display: flex;
+    justify-content: space-between;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+
+.card-cvc{
+    color: var(--White);
+    margin: auto;
+    margin-right: 55px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 70px 0px 350px;
+}
+
+.form{
+    display: flex;
+    flex-wrap: wrap;
+    width: 400px;
+    min-width: 315px;   
+}
+
+label{
+    color: var(--Very-dark-violet);
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: .2em;
+    font-size: .7em;
+    display: block;
+    margin-top: 10px;
+}
+
+input::placeholder{
+    color: var(--Light-grayish-violet);
+}
+
+input[type="text"]::placeholder{
+    text-transform: none;
+}
+
+input[type="text"]{
+    width: 100%;
+    height: 45px;
+    background-color: transparent;
+    color: var(--Very-dark-violet);
+    border: var(--Light-grayish-violet) solid 1px;
+    border-radius: 8px;
+    padding: 16px;
+    font-size: 1.1em;
+    margin-block: 8px 10px;
+    text-transform: uppercase;
+}
+
+input[type="text"]:focus{
+    border-color: var(--Very-dark-violet);
+}
+
+
+.name{
+    text-transform: capitalize !important;
+}
+
+.date-cvc{
+    display: flex;
+    gap: 15px;
+    width: 100%;
+}
+
+.date-container{
+    width: 190px;
+    min-width: 150px;
+}
+
+.date-inputs{
+    display: flex;
+    gap: 10px;
+}
+
+.date{
+    width: 90px !important;
+    min-width: 70px;
+}
+
+.cvc-container{
+    width: 190px;
+    min-width: 150px;
+}
+
+.BTNsubmit{
+    width: 100%;
+    height: 55px;
+    background-color: var(--Very-dark-violet);
+    color: var(--White);
+    border-radius: 8px;
+    letter-spacing: 1px;
+    font-size: 1em;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+input.error{
+    border-color: var(--Error-input) !important;
+    animation: input-error 250ms normal 200ms;
+}
+
+span.error{
+    display: none;
+    color: var(--Error-input);
+    font-size: 0.85em;
+    font-weight: bold;
+    width: 100%;
+}
+
+@keyframes input-error {
+    0%{
+        transform: rotate(0deg);
+    }
+    10%{
+        transform: rotate(2deg);
+    }
+    20%{
+        transform: rotate(-2deg);
+    }
+    30%{
+        transform: rotate(2deg);
+    }
+    40%{
+        transform: rotate(-2deg);
+    }
+    50%{
+        transform: rotate(2deg);
+    }
+    60%{
+        transform: rotate(-2deg);
+    }
+    70%{
+        transform: rotate(2deg);
+    }
+    80%{
+        transform: rotate(-2deg);
+    }
+    90%{
+        transform: rotate(2deg);
+    }
+    100%{
+        transform: rotate(0deg);
+    }
+}
+
+.complete{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 400px;
+}
+
+.complete img{
+    margin-bottom: 40px;
+}
+
+.complete-header{
+    width: fit-content;
+    color: var(--Very-dark-violet);
+    text-transform: uppercase;
+    font-size: 1.8em;
+    letter-spacing: .1em;
+}
+
+.complete-details{
+    color: var(--Dark-grayish-violet);
+    margin-block: 15px 50px;
+    font-size: 1.2em;
+}
+
+.BTNcontinue{
+    width: 100%;
+    height: 55px;
+    background-color: var(--Very-dark-violet);
+    color: var(--White);
+    font-size: 1.1em;
+    letter-spacing: .05em;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+
+
+@media screen and (max-width: 1200px) {
+    main{
+        flex-direction: column;
+    }
+
+    
+    .bg-container{
+        position: inherit;
+        width: 100%;
+    }
+    
+    .bg{
+        background-image: url(images/bg-main-mobile.png);
+        background-size: cover;
+        width: 100vw;
+        height: 240px;
+    }
+    
+    .front, .back{
+        width: calc(447px * 0.65);
+        height: calc(245px * 0.65);
+    }
+
+    .front{
+        left: calc(50% - 175px);
+        top: 120px;
+        z-index: 1;
+        padding: calc(30px * 0.65);
+    }
+    
+    .back{
+        left: calc(50% - 115px);
+        top: 30px;
+    }
+    
+    .card-logo{
+        width: calc(84px * 0.65);
+    }
+    
+    .card-number{
+        font-size: 1.1em;
+        margin-bottom: 15px;
+    }
+    
+    .name-date{
+        font-size: 0.6em;
+    }
+    
+    .card-cvc{
+        font-size: 0.6em;
+        margin-right: 35px;
+        padding-bottom: 2px;
+    }
+    
+    .container{
+        padding: 0;
+        margin: 85px 30px 0px 30px;
+    }
+}

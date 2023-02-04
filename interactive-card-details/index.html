@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+    <link rel="stylesheet" href="style.css" />
+
+    <title>Frontend Mentor | Interactive card details form</title>
+
+  </head>
+  <body>
+    <main>
+      
+        <section class="bg-container">
+           
+          <div class="bg"></div>
+          <div class="card-bg front">
+            <img class="card-logo" src="images/card-logo.svg" alt="Card logo">
+            <p class="card-number">0000 0000 0000 0000</p>
+            <span class="name-date">
+              <p class="card-name">Jane Applessed</p>
+              <p class="card-date">00/00</p>
+            </span>
+          </div>
+          <div class="card-bg back">
+            <p class="card-cvc">000</p>
+          </div>
+        </section>
+        <!-- <div class="bg-mobile">
+          <img class="bg" src="images/bg-main-mobile.png" alt="">
+          <img class="card-bg front" src="images/bg-card-front.png" alt="">
+          <img class="card-bg back" src="images/bg-card-back.png" alt="">
+          <div class="card-bg front"></div>
+          <div class="card-bg back"></div>
+        </div> -->
+        <section class="container">
+          <div class="form">
+            <label for="name" style="margin-top: 0;">cardholder name</label>
+            <input type="text" id="name" class="name" autofocus placeholder="e.g. Jane Applessed" maxlength="30">
+            <span class="error name-error">Can't be blank</span>
+            
+            <label for="number">card number</label>
+            <input type="text" id="number" class="number" placeholder="e.g. 1234 5678 9123 0000" maxlength="19">
+            <span class="error number-error">Can't be blank</span>
+            
+            <div class="date-cvc">
+              <div class="date-container">
+                <label for="date">exp. date (mm/yy)</label>
+                <div class="date-inputs">
+                  <input type="text" id="date" class="date mm" placeholder="MM" maxlength="2">
+                  <input type="text" class="date yy" placeholder="YY" maxlength="2">
+                </div>
+                <span class="error date-error">Can't be blank</span>
+              </div>
+              
+              <div class="cvc-container">
+                <label for="cvc">cvc</label>
+                <input type="text" id="cvc" class="cvc" placeholder="e.g. 123" maxlength="3">
+                <span class="error cvc-error">Can't be blank</span>
+              </div>
+            </div>
+
+            <button class="BTNsubmit">Confirm</button>
+          </div>
+          <div class="complete hidden">
+            <img src="images/icon-complete.svg" alt="Complete icon">
+            <h1 class="complete-header">thank you!</h1>
+            <h3 class="complete-details">We've added your card details</h3>
+            <button class="BTNcontinue">Continue</button>
+          </div>
+        </section>
+
+    </main>
+  </body>
+  <script src="script.js"></script>
+</html>
