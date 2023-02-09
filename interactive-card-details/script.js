@@ -1,13 +1,25 @@
-const cardNumber = document.querySelector(".card-number");
-const cardName = document.querySelector(".card-name");
-const cardDate = document.querySelector(".card-date");
-const cardCvc = document.querySelector(".card-cvc");
 
+const inputs = {
+    name: document.querySelector(".name"),
+    number: document.querySelector(".number"),
+    yy: document.querySelector(".yy"),
+    mm: document.querySelector(".mm"),
+    cvc: document.querySelector(".cvc")
+};
 
-function isLetter(str) {
-    if (str.length === 1 && str.match(/[a-z]/i)) return true;
-    else return false;
+const errors = {
+    name: document.querySelector(".name-error"),
+    number: document.querySelector(".number-error"),
+    date: document.querySelector(".date-error"),
+    cvc: document.querySelector(".cvc-error")
 }
+
+const card = {
+    name: document.querySelector(".card-name"),
+    number: document.querySelector(".card-number"),
+    date: document.querySelector(".card-date"),
+    cvc: document.querySelector(".card-cvc")
+};
 
 String.prototype.numberCard = function() {
     let result = [];
@@ -21,7 +33,6 @@ String.prototype.numberCard = function() {
     result = result.join(" ");
     return result;
 };
-
 String.prototype.isBlank = function() {
     if (this.length === 0) return true;
     else return false;
@@ -41,138 +52,131 @@ String.prototype.hasLetter = function() {
     return false;
 };
 
-
-function applyError(target, input, error) {
+function applyError(input, target, msg) {
     input.classList.add("error");
-    target.style.display = "block";
-    target.innerHTML = error;
+    target.classList.remove("hidden");
+    target.innerHTML = msg;
 };
 
-function removeError(target, input) {
+function removeError(input, target) {
     input.classList.remove("error");
-    target.style.display = "none";
-}
-
-
-
-Element.prototype.errorName = function() {
-    const error = document.querySelector(".name-error");
-    if (this.value.isBlank()) {
-        applyError(error, this, "Can't be blank");
-        return true;
-    } else if (this.value.hasNumber()) {
-        applyError(error, this, "Wrong format, only letters")
-        return true;
-    } else {
-        removeError(error, this);
-    }
-    return false;
+    target.classList.add("hidden");
 };
-document.querySelector(".name").addEventListener("input", (event) => {
-    const input = event.target;
 
-    input.errorName();
-    cardName.innerHTML = input.value;
-});
+function getErrorName() {
+    const _input = inputs.name;
+    const _error = errors.name;
 
-
-
-Element.prototype.errorNumberInput = function() {
-    const error = document.querySelector(".number-error");
-    if (this.value.isBlank()) {
-        applyError(error, this, "Can't be blank");
-        return true;
-    } else if (this.value.replaceAll(" ", "").hasLetter()) {
-        applyError(error, this, "Wrong format, numbers only");
-        return true;
-    } else {
-        removeError(error, this)
-    }
-    return false;
+    if (_input.value.isBlank()) return {input: _input, error: _error, msg: "Can't be blank"};
+    if (_input.value.hasNumber()) return {input: _input, error: _error, msg: "Wrong format"};
+    return false
 };
-document.querySelector(".number").addEventListener("input", (event) => {
-    const input = event.target;
 
-    input.errorNumberInput();
-    input.value = input.value.replaceAll(" ", "").numberCard();
-    cardNumber.innerHTML = input.value;
-});
-// document.querySelector(".number").addEventListener("change", (event) => {
-//     const size = event.target.value.length;
-//     const error = document.querySelector(".number-error")
+function getErrorNumber() {
+    const _input = inputs.number;
+    const _error = errors.number;
+
+    if (_input.value.isBlank()) return {input: _input, error: _error, msg: "Can't be blank"};
+    if (_input.value.replaceAll(" ", "").hasLetter()) return {input: _input, error: _error, msg: "Wrong format, numbers only"};
+    if (_input.value.length < 19) return {input: _input, error: _error, msg: "Wrong format"};
+    return false
+};
+
+function getErrorCVC() {
+    const _input = inputs.cvc;
+    const _error = errors.cvc;
+
+    if (_input.value.isBlank()) return {input: _input, error: _error, msg: "Can't be blank"};
+    if (isNaN(_input.value)) return {input: _input, error: _error, msg: "Wrong format, numbers only"};
+    if (_input.value.length != 3) return {input: _input, error: _error, msg: "Wrong format"};
+    return false
+};
+
+function getErrorMM() {
+    const _input = inputs.mm;
+    const _error = errors.date;
     
-//     if (size === 0) {
-//         error.innerHTML = "Can't be blank";
-//         number.classList.add("error");
-//         error.style.display = "block";
-//     } 
-//     else if (size < 19) applyError(error, number, "Wrong format");
-//     else removeError(error, number);
-// });
+    if (_input.value.isBlank()) return {input: _input, error: _error, msg: "Can't be blank"};
+    if (_input.value.hasLetter()) return {input: _input, error: _error, msg: "Wrong format, numbers only"};
+    if (_input.value > 12 || _input.value < 1) return {input: _input, error: _error, msg: "Wrong format"};
+    return false
+};
+
+function getErrorYY() {
+    const _input = inputs.yy;
+    const _error = errors.date;
+    
+    if (_input.value.isBlank()) return {input: _input, error: _error, msg: "Can't be blank"};
+    if (_input.value.hasLetter()) return {input: _input, error: _error, msg: "Wrong format, numbers only"};
+    return false
+};
 
 
 
-const selected = {mm: false, yy: false};
-const mm = document.querySelector(".mm");
-const yy = document.querySelector(".yy");
-mm.addEventListener("input", event => selected.mm = true);
-yy.addEventListener("input", event => selected.yy = true);
+inputs.name.addEventListener("input", event => {
+    removeError(event.target, errors.name);
+    card.name.innerHTML = event.target.value;
+});
+
+inputs.number.addEventListener("input", event => {
+    removeError(event.target, errors.number);
+    event.target.value = event.target.value.replaceAll(" ", "").numberCard();
+    card.number.innerHTML = event.target.value;
+});
+
+inputs.cvc.addEventListener("input", event => {  
+    removeError(event.target, errors.cvc);
+    card.cvc.innerHTML = event.target.value;
+});
+
+inputs.mm.addEventListener("input", event => {
+    inputs.mm.classList.remove("error");
+    if (inputs.mm.className.search("error") === -1 && inputs.yy.className.search("error") === -1) {
+        errors.date.classList.add("hidden");
+    }
+});
+inputs.yy.addEventListener("input", event => {
+    inputs.yy.classList.remove("error");
+    if (inputs.mm.className.search("error") === -1 && inputs.yy.className.search("error") === -1) {
+        errors.date.classList.add("hidden");
+    }
+});
 document.querySelectorAll(".date").forEach(element => {
-    element.addEventListener("input", (event) => {
+    element.addEventListener("change", event => {
         const input = event.target;
-        const error = document.querySelector(".date-error")
 
-        const aCode = input.value.charCodeAt(input.value.length-1);;
-        if (aCode < 48 || aCode > 57) return input.value = input.value.replace(event.data, "");
-
-        if (input.value.length === 0) input.classList.add("error")
-        else input.classList.remove("error")
-
-        if (mm.value.length === 0 && selected.mm) error.classList.remove("hidden");
-        else if (yy.value.length === 0 && selected.yy) error.classList.remove("hidden");
-        else error.classList.add("hidden");
-    });
-    element.addEventListener("change", (event) => {
-        const input = event.target;
-        if (input.className.search("mm") != -1) {
-            if (input.value > 12) input.value = 12;
-            else if (input.value < 1 && input.value != "") input.value = 1;
-        }
-        
-        if (input.value.length === 1) input.value = "0"+input.value;
-        cardDate.innerHTML = `${mm.value || "00"}/${yy.value || "00"}`;
+        if (input.value.length === 1 && !input.value.hasLetter()) {
+            input.value = "0"+input.value;
+            card.date.innerHTML = `${inputs.mm.value || "00"}/${inputs.yy.value || "00"}`;
+        };
     });
 });
 
+document.querySelector(".BTNsubmit").addEventListener("click", event => {
+    let errorOcurred = false
+    const errors = [getErrorName(), getErrorNumber(), getErrorMM(), getErrorYY(), getErrorCVC()]; //errorSpan, input, msg
+    errors.forEach(element => {
+        if (element) {
+            applyError(element.input, element.error, element.msg)
+            errorOcurred = true
+        };
+    });
 
-
-// document.querySelector(".cvc").addEventListener("input", (event) => {
-//     const input = event.target;
-//     const error = document.querySelector(".cvc-error");
-
-//     if (input.value.length === 0) applyError(error, input, "Can't be blank");
-//     else if (isNaN(input.value)) applyError(error, input, "Wrong format, numbers only");
-//     else removeError(error, input);
-//     cardCvc.innerHTML = input.value;
-// });
-// document.querySelector(".cvc").addEventListener("change", (event) => {
-//     const input = event.target;
-//     const error = document.querySelector(".cvc-error")
-//     if (input.value.length != 3) applyError(error, input, "Wrong format");
-// });
-
-
-
-document.querySelector(".BTNsubmit").addEventListener("click", (event) => {
-    const errors = []; //errorSpan, input, msg
-
-
-
+    if (errorOcurred) return
 
     document.querySelector(".form").classList.toggle("hidden");
     document.querySelector(".complete").classList.toggle("hidden");
 });
-document.querySelector(".BTNcontinue").addEventListener("click", (event) => {
+document.querySelector(".BTNcontinue").addEventListener("click", event => {
     document.querySelector(".form").classList.toggle("hidden");
     document.querySelector(".complete").classList.toggle("hidden");
+
+    Object.keys(inputs).forEach(item => {
+        inputs[item].value = "";
+    });
+
+    card.number.innerHTML = "0000 0000 0000 0000";
+    card.name.innerHTML = "";
+    card.cvc.innerHTML = "000";
+    card.date.innerHTML = "00/00";
 });
