@@ -6,11 +6,9 @@ This is a solution to the [Interactive card details form challenge on Frontend M
 
 - [Overview](#overview)
   - [The challenge](#the-challenge)
-  - [Screenshot](#screenshot)
   - [Links](#links)
 - [My process](#my-process)
   - [Built with](#built-with)
-  - [What I learned](#what-i-learned)
 - [Author](#author)
 
 ## Overview
@@ -26,13 +24,9 @@ Users should be able to:
 - View the optimal layout depending on their device's screen size
 - See hover, active, and focus states for interactive elements on the page
 
-### Screenshot
-
-![](./screenshot.jpg)
-
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
+- Solution URL: [https://www.frontendmentor.io/solutions/responsive-interactive-card-q1KqWTbeBT]
 - Live Site URL: [https://ninhos0.github.io/FrontEnd-Mentor/interactive-card-details]
 
 ## My process
@@ -44,27 +38,7 @@ Users should be able to:
 - Flexbox
 - Javascript
 
-### What I learned
-
-Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
-
-To see how you can add code snippets, see below:
-
-```html
-<h1>Some HTML code I'm proud of</h1>
-```
-```css
-.proud-of-this-css {
-  color: papayawhip;
-}
-```
-```js
-const proudOfThisFunc = () => {
-  console.log('🎉')
-}
-```
-
 ## Author
 
-- Website - [Renan Granzotti](ninhos0.github.io/Portifolio/)
+- Website - [Renan Granzotti](https://www.ninhos0.github.io/Portifolio/)
 - Frontend Mentor - [@NINHOS0](https://www.frontendmentor.io/profile/NINHOS0)

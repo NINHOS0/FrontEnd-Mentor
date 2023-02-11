@@ -134,7 +134,7 @@ label{
 }
 
 input::placeholder{
-    color: var(--Light-grayish-violet);
+    color: var(--Dark-grayish-violet);
 }
 
 input[type="text"]::placeholder{
