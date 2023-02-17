@@ -20,6 +20,10 @@
     font-family: 'League Spartan', sans-serif;
 }
 
+.hidden{
+    display: none !important;
+}
+
 header{
     background-color: var(--Dark-Cyan);
     background-image: url(images/bg-header-desktop.svg);
@@ -31,20 +35,93 @@ header{
 
 main{
     background-color: var(--Light-Gray-Background);
-    padding: 80px 150px;
+    padding: 0px 150px;
+}
+
+main:has(.hidden){
+    padding-top: 80px;
+}
+
+.filter-container{
+    background-color: var(--white);
+    transform: translateY(-40px);
+    min-height: 80px;
+    border-radius: 5px;
+    padding: 10px 40px;
+    display: flex;
+    align-items: center;
+}
+
+.filters{
+    display: flex;
+    flex: 1;
+    flex-wrap: wrap;
+}
+
+.filter{
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    height: 35px;
+    width: fit-content;
+    background-color: var(--Light-Gray-Background);
+    border-radius: 5px 0px 0px 5px;
+}
+
+.f-name{
+    color: var(--Dark-Cyan);
+    font-size: 1.4em;
+    font-weight: 700;
+    margin-inline: 15px;
+    margin-bottom: -5px;
+}
+
+.f-btn{
+    display: flex;
+    width: 35px;
+    height: 35px;
+    padding: 10px;
+    background-color: var(--Dark-Cyan);
+    border-radius: 0px 5px 5px 0px;
+    transition: ease-in-out 100ms;
+}
+
+.f-btn:hover{
+    background-color: var(--Very-Dark-Cyan);
+    cursor: pointer;
+}
+
+.clear{
+    font-size: 1.2em;
+    color: var(--Dark-Cyan);
+    margin-left: 40px;
+}
+
+.clear:hover{
+    text-decoration: underline;
+    cursor: pointer;
 }
 
 .item{
     position: relative;
     width: 100%;
-    height: 150px;
+    min-height: 150px;
     display: flex;
     background-color: var(--white);
     border-radius: 5px;
     padding: 25px;
+    margin-block: 25px;
 }
 
-.item::after{
+.item:first-child, .item:last-child{
+    margin-block: 0;
+}
+
+.item:nth-child(2){
+    margin-top: 25px;
+}
+
+.item:has(span.new)::after{
     content: "";
     display: block;
     position: absolute;
@@ -56,11 +133,8 @@ main{
     border-radius: 5px 0px 0px 5px;
 }
 
-.company-img{
-
-}
-
 .description{
+    width: calc(50% - 88px);
     margin-left: 25px;
     display: flex;
     flex-direction: column;
@@ -72,6 +146,12 @@ main{
     font-size: 1.2em;
     font-weight: 700;
     text-transform: capitalize;
+}
+
+.company-img{
+    align-self: center;
+    width: fit-content;
+    height: fit-content;
 }
 
 .top-desc{
@@ -100,6 +180,11 @@ main{
     font-weight: 700;
 }
 
+.title:hover{
+    color: var(--Dark-Cyan);
+    cursor: pointer;
+}
+
 .bottom-desc{
     display: flex;
     align-items: center;
@@ -116,10 +201,11 @@ main{
 
 .tags{
     flex: 1;
-    text-align: right;
+    display: flex;
+    justify-content: right;
+    flex-wrap: wrap;
+    width: calc(50% - 88px);
     height: fit-content;
-    justify-self: center;
-    align-self: center;
 }
 
 .tag{
@@ -129,5 +215,12 @@ main{
     font-weight: 700;
     padding: 10px 10px 5px 10px;
     border-radius: 4px;
-    margin-inline: 5px;
+    margin: 5px;
+    transition: ease-in-out 100ms;
+}
+
+.tag:hover{
+    background-color: var(--Dark-Cyan);
+    color: var(--Light-Gray-Filter);
+    cursor: pointer;
 }
