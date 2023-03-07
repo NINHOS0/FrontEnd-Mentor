@@ -47,6 +47,7 @@ function createComponent() {
     </div>
     <div class="bottom-desc"> ${job.postedAt} <span class="dot"></span> ${job.contract} <span class="dot"></span> ${job.location} </div>
     </div>
+    <hr>
     <div class="tags">
     ${tagsComponent.trim()}
     </div>

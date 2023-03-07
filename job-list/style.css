@@ -157,22 +157,24 @@ main:has(.hidden){
 .top-desc{
 }
 
-.new{
-    background-color: var(--Dark-Cyan);
+.new, .featured{
+    display: inline-block;
     color: var(--white);
     padding: 8px 8px 5px 8px;
     border-radius: 16px;
     font-size: 0.8em;
+    font-weight: 700;
     text-transform: uppercase;
+    margin-inline: 2px;
+}
+
+.new{
+    background-color: var(--Dark-Cyan);
+    
 }
 
 .featured{
     background-color: var(--Very-Dark-Cyan);
-    color: var(--white);
-    padding: 8px 8px 5px 8px;
-    border-radius: 16px;
-    font-size: 0.8em;
-    text-transform: uppercase;
 }
 
 .title{
@@ -199,6 +201,14 @@ main:has(.hidden){
     border-radius: 50%;
 }
 
+hr{
+    display: none;
+    width: 100%;
+    height: 2px;
+    background-color: var(--Dark-Gray-Cyan);
+    border:  none;
+}
+
 .tags{
     flex: 1;
     display: flex;
@@ -223,4 +233,55 @@ main:has(.hidden){
     background-color: var(--Dark-Cyan);
     color: var(--Light-Gray-Filter);
     cursor: pointer;
+}
+
+@media screen and (max-width: 1000px) {
+
+    header{
+        background-image: url(images/bg-header-mobile.svg);
+    }
+
+    main{
+        padding: 0px 25px;
+    }
+
+    .item{
+        flex-direction: column;
+        padding-top: 0;
+    }
+    
+    .company-img{
+        position: absolute;
+        align-self: normal;
+        width: 50px;
+        top: -25px;
+    }
+
+    .description{
+        width: auto;
+        margin: 40px 0 0 0;
+    }
+
+    .company{
+        font-size: 1em;
+        margin-right: 20px;
+    }
+
+    .title{
+        font-size: 1em;
+    }
+
+    hr{
+        display: block;
+    }
+
+    .tags{
+        width: auto;
+        justify-content: left;
+        margin: 10px 20px 10px 0px;
+    }
+
+    .tag{
+        margin: 5px 10px 5px 0px;
+    }
 }
