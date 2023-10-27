@@ -30,7 +30,6 @@ const loadData = () => {
 function reloadData() {
   itemParent.innerHTML = null;
   filterParent.innerHTML = null;
-  console.log(filterContent);
   if (!filter.length > 0) filterContent.classList.add("hidden");
   else filterContent.classList.remove("hidden");
   loadData();
